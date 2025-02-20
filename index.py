@@ -26,7 +26,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Configure Gemini API
-genai.configure(api_key='AIzaSyCh_KSVD79FXNUortR5sz8uPP4wLGGWldk')
+genai.configure(api_key='#your api key')
 model = genai.GenerativeModel('gemini-pro')
 
 class MicrofinanceAnalyzer:
@@ -188,8 +188,7 @@ def create_dashboard():
     analyzer = MicrofinanceAnalyzer()
     analyzer.train()  # Train the model immediately
 
-    print("MicroFinance AI Platform")
-    print("------------------------")
+   
 
     # Create input widgets
     widgets_data = {
@@ -306,7 +305,7 @@ create_dashboard()
 import google.generativeai as genai
 
 # Set up Gemini API
-GEMINI_API_KEY = "AIzaSyCh_KSVD79FXNUortR5sz8uPP4wLGGWldk"
+GEMINI_API_KEY = "#your api key"
 genai.configure(api_key=GEMINI_API_KEY)
 
 class MicrofinanceCreditAnalyzer:
