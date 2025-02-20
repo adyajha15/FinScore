@@ -16,7 +16,7 @@ To set up FinScore, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/FinScore.git
+git clone git clone https://github.com/adyajha15/FinScore.git
 
 # Navigate to the project directory
 cd FinScore
