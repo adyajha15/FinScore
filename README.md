@@ -49,8 +49,12 @@ python main.py
 - Utilizes a weighted scoring model based on **World Bank Creditworthiness Methodology and PAS Creditworthiness Assessment Framework**.
 - Scores applicants based on sustainability factors such as carbon footprint, ethical business practices, and governance compliance.
 
-### 4. **Loan Approval Prediction**
-- Integrates outputs from the credit risk model, fraud detection, and ESG assessment.
+## 4. **Sentiment Analysis**
+- Dual-model sentiment analysis approach: Gemini API for comprehensive theme analysis and lending risk factors, and TextBlob for numerical sentiment scoring
+- Analyzes applicant-provided text data to determine sentiment polarity (positive, neutral, negative). Detects key themes and potential red flags that might indicate financial instability or fraudulent intent.
+
+### 5. **Loan Approval Prediction**
+- Integrates outputs from the credit risk model, fraud detection, ESG assessment and sentiment analysis.
 - Applies a weighted decision mechanism to determine the final loan approval likelihood.
 
 ## Data Considerations
