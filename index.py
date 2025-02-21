@@ -22,12 +22,50 @@ from plotly.subplots import make_subplots
 import google.generativeai as genai
 import ipywidgets as widgets
 from IPython.display import display, HTML, clear_output
+import re
+from textblob import TextBlob
 import warnings
 warnings.filterwarnings('ignore')
 
+#i'm a simple person in need of a simple automation
+def get_api_key():
+    try:
+        with open('apikey.txt', 'r') as file:
+            return file.read().strip()
+    except FileNotFoundError:
+        raise Exception("apikey.txt not found. Please create this file with your API key.")
+    except Exception as e:
+        raise Exception(f"Error reading API key: {str(e)}")
+
 # Configure Gemini API
-genai.configure(api_key='#your api key')
+genai.configure(api_key=get_api_key())
 model = genai.GenerativeModel('gemini-pro')
+
+class SentimentAnalyzer:
+    def __init__(self, api_key):
+        self.model = genai.GenerativeModel('gemini-pro')
+    def analyse_sentiment(self, text_data):
+        prompt = f"""
+        Analyse the sentiment of the following text and provide:
+        1. The overall sentiment (positive, negative, netural)
+        2. Key themes or topics
+        3. Any potential red flags for lending
+        Text: {text_data}
+        """
+
+        gemini_response = self.model.generate_content(prompt)
+
+        blob = TextBlob(text_data)
+        textblob_sentiment = blob.sentiment.polarity
+        
+        # Combine analyses
+        sentiment_score = {
+            'gemini_analysis': gemini_response.text,
+            'textblob_score': textblob_sentiment,
+            'overall_sentiment': 'positive' if textblob_sentiment > 0 else 'negative' if textblob_sentiment < 0 else 'neutral'
+        }
+        
+        return sentiment_score
 
 class MicrofinanceAnalyzer:
     def __init__(self):
